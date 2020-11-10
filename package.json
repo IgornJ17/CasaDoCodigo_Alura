@@ -1,0 +1,20 @@
+{
+  "name": "casa_do_codigo",
+  "version": "1.0.0",
+  "description": "Casa do codigo  - trabalho alura",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "hbs": "^4.1.1",
+    "marko": "^4.13.4",
+    "nodemon": "^2.0.5",
+    "sqlite-async": "^1.1.0",
+    "sqlite3": "^5.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "nodemon server.js --ignore *.marko.js"
+  },
+  "author": "Igor Juliani",
+  "license": "ISC"
+}
