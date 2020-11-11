@@ -18,5 +18,25 @@ module.exports = function(app) {
             })
             .catch(error => booksDAO.errorCall(error, app));    
     })
+
+    app.get('/livros/form', function(req, res){
+        res.marko(require('../views/books/form/form.marko'))
+    })
+
+    app.post('/livros', function(req, res){
+        const formData = req.body;
+
+        let booksDAO = new BooksDAO(db);
+        booksDAO.add(formData)
+        .then(function(sucess){
+            console.log(sucess);
+            res.redirect('/livros')
+        })
+        .catch(function(error){
+            booksDAO.errorCall(error, app);
+            return 1;
+        })
+
+    })
 }
 
