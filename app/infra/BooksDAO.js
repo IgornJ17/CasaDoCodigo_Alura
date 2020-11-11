@@ -36,7 +36,60 @@ class BooksDAO {
            })
       })
    }
+     
+     searchForId(id){
+          return new Promise(function(resolve, reject){
+               
+               this._db.all(`SELECT * FROM books WHERE id=${id}`, function(error, result){
+                    if (error) return reject("Nao foi possivel localizar o Livro informado");
+                    return resolve(result);
+               }) 
+          })
+     }
 
+     update(obj){
+          return new Promise((resolve, reject) => {
+               this._db.run(`
+               UPDATE books SET
+               title = ?,
+               price = ?,
+               discripiton = ?
+               WHERE id = ?
+               `,
+               [
+               obj.titulo,
+               obj.preco,
+               obj.descricao,
+               obj.id
+               ],
+               erro => {
+               if (erro) {
+                    return reject('Não foi possível atualizar o livro!');
+               }
+
+               resolve();
+               });
+          });
+     }
+
+     remove(id) {
+          return new Promise((resolve, reject) => {
+               this._db.run(
+               `
+                    DELETE 
+                    FROM books
+                    WHERE id = ?
+               `,
+               [id],
+               (erro) => {
+                    if (erro) {
+                         return reject('Não foi possível remover o livro!');
+                    }
+                    return resolve();
+               }
+               );
+          });
+     }
 }
 
 module.exports = BooksDAO;
