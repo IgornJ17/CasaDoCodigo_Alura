@@ -1,3 +1,5 @@
+/*Aplicando o padrao de projeto DAO - Data Acess Object*/
+
 class BooksDAO {
     constructor(db){
         this._db = db;
@@ -90,6 +92,7 @@ class BooksDAO {
                );
           });
      }
+     
 }
 
 module.exports = BooksDAO;
